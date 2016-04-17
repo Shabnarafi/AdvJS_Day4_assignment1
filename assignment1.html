@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+<form name="form1" action="#" id="frm1">
+	<fieldset>
+		<legend>Vehicle Form</legend>
+			Name:<input type="text" id="name" placeholder="Name"/><br><br>
+			Description:<input type="text" id="description" placeholder="Description"/><br><br>
+			CostPerKilometer:<input type="text" id="costPerKilometer" placeholder="Description"/><br><br>
+			VehicleType:<select id="type">
+							<option value="Select" selected>Select</option>
+							<option value="TwoWheeler">TwoWheeler</option>
+							<option value="FourWheeler">FourWheeler</option>
+						</select><br><br>
+			<!--FuelType:<input type="text" id="FuelType" placeholder="FuelType"/><br><br>-->
+			<input type="button" id="btn" value="Submit" onclick="showDetails()"/><br><br>
+	</fieldset>
+</form>
+<script>
+
+	function Vehicle(name, description, vehicleType, costPerKilometer){
+		this.name = name;
+		this.description = description;
+		this.vehicleType = vehicleType;
+		this.costPerKilometer = costPerKilometer;
+
+	}
+	
+	function TwoWheeler(name, description, vehicleType, costPerKilometer)
+	{
+		this.name = name;
+		this.description = description;
+		this.vehicleType = vehicleType;
+		this.costPerKilometer = costPerKilometer;
+	
+	}
+	
+	function FourWheeler(fuelType)
+	{
+		this.fuelType = fuelType;
+	
+	}
+			
+			//var objVehicle1 = new Vehicle(name,description,vehicleType,costPerKilometer);
+	
+	function showDetails()
+	{
+		var name = document.form1.name.value;
+		var description = document.form1.description.value;
+		var e = document.form1.type.selectedIndex;
+		//alert(e);
+		var vehicleType = document.form1.type.options[e].value;
+		//alert(vehicleType);
+		var costPerKilometer = document.form1.costPerKilometer.value;
+		var objVehicle = new Vehicle(name,description,vehicleType,costPerKilometer);
+		TwoWheeler.prototype=objVehicle;
+		FourWheeler.prototype=objVehicle;
+
+				if(vehicleType==="FourWheeler")
+				{
+					
+					var fourWheeler = new FourWheeler(name,description,vehicleType,costPerKilometer);
+					//alert("Inside 4wheeler");
+					//alert(fourWheeler.name);
+					// r1 = document.getElementById('frm1').removeChild(document.getElementById('name'));
+					//var r2 = document.getElementById('frm1').removeChild(document.getElementById('description'));
+					//var r3 = document.getElementById('frm1').removeChild(document.getElementById('costPerKilometer'));
+					//var r4=document.getElementById('frm1').removeChild(document.getElementById('type'));
+					var parent = document.getElementById('frm1');
+					var ipt = document.createElement("input");
+					ipt.type = "text";
+					ipt.id = "name1";
+					ipt.value = "";
+					var e = document.createElement("br");
+					ipt.appendChild(e);
+					parent.appendChild(ipt);
+					var ipt1 = document.createElement("input");
+					ipt1.type = "text";
+					ipt1.id = "description1";
+					ipt1.value = "";
+					parent.appendChild(ipt1);
+					var ipt2 = document.createElement("input");
+					ipt2.type = "text";
+					ipt2.id = "type1";
+					ipt2.value = "";
+					parent.appendChild(ipt2);
+					var ipt3 = document.createElement("input");
+					ipt3.type = "text";
+					ipt3.id = "costPerKilometer1";
+					ipt3.value = "";
+					parent.appendChild(ipt3);
+					var ipt4 = document.createElement("input");
+					ipt4.type = "text";
+					ipt4.id = "FuelType";
+					ipt4.value = "";
+					parent.appendChild(ipt4);
+					alert(fourWheeler.fuelType);
+					document.getElementById("name1").value = fourWheeler.name;
+					document.getElementById("description1").value = fourWheeler.description;
+					document.getElementById("type1").value = fourWheeler.vehicleType;
+					document.getElementById("costPerKilometer1").value = fourWheeler.costPerKilometer;
+					document.getElementById("FuelType").value = "CNG";
+
+				}
+				else if(objVehicle.vehicleType==="TwoWheeler")
+				{
+				
+					var twoWheeler = new TwoWheeler(name,description,vehicleType,costPerKilometer);
+					alert("Inside 2wheeler");
+					//document.getElementById('frm1').removeChild(document.getElementById('name'));
+					//document.getElementById('frm1').removeChild(document.getElementById('description'));
+					//document.getElementById('frm1').removeChild(document.getElementById('costPerKilometer'));
+					//document.getElementById('frm1').removeChild(document.getElementById('type'));
+					var parent = document.getElementById('frm1');
+					var ipt = document.createElement("input");
+					ipt.type = "text";
+					ipt.id = "name1";
+					ipt.value = "";
+					parent.appendChild(ipt);
+					var ipt1 = document.createElement("input");
+					ipt1.type = "text";
+					ipt1.id = "description1";
+					ipt1.value = "";
+					parent.appendChild(ipt1);
+					var ipt2 = document.createElement("input");
+					ipt2.type = "text";
+					ipt2.id = "type1";
+					ipt2.value = "";
+					parent.appendChild(ipt2);
+					var ipt3 = document.createElement("input");
+					ipt3.type = "text";
+					ipt3.id = "costPerKilometer1";
+					ipt3.value = "";
+					parent.appendChild(ipt3);
+					document.getElementById("name1").value=twoWheeler.name;
+					document.getElementById("description1").value=twoWheeler.description;
+					document.getElementById("type1").value=twoWheeler.vehicleType;
+					document.getElementById("costPerKilometer1").value=twoWheeler.costPerKilometer;
+
+				}
+			else
+			{
+
+
+				alert("Please select an option");
+			}
+}
+</script>
+</body>
+</html>
